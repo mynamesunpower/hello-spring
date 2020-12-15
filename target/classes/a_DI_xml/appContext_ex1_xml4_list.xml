@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="listBean" class="a_DI.ex1.ex1_xml4_list.ListBean">
+        <property name="intList">
+            <list>
+                <value>20</value>
+                <value>3</value>
+                <value>56</value>
+            </list>
+        </property>
+        <property name="memberList">
+            <list>
+                <ref bean="member1"/>
+                <bean class="a_DI.ex1.ex1_xml4_list.MemberBean">
+                    <constructor-arg value="김태양"/>
+                    <constructor-arg value="30"/>
+                    <constructor-arg value="몰라요"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="member1" class="a_DI.ex1.ex1_xml4_list.MemberBean">
+        <property name="name" value="김태양"/>
+        <property name="age"  value="30"/>
+        <property name="message" value="졸려요"/>
+    </bean>
+
+
+    <!-- <property name= "intList">
+        list 태그 안에 value로 넣으면 setIntList(List<Integer> xxx)
+        List<Integer> 형태로 받는다.
+    -->
+
+</beans>

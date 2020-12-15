@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+1. 기본값지정
+    (1) setter
+    (2) constructor
+    (3) pvalue 지정
+-->
+
+    <bean id="memberBean" class="a_DI.ex1.ex1_xml3_pvalue.MemberBean"
+    p:name="박길동" p:age="44" p:message="행복한 주말"></bean>
+
+    <bean id="memberDAO" class="a_DI.ex1.ex1_xml3_pvalue.MemberDAO" p:member-ref="memberBean"/>
+
+</beans>

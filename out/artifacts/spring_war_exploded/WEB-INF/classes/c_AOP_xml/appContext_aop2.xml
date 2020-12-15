@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean name="targetBean" class="c_AOP.aop2_xml_order.MemberServiceImpl"/>
+
+    <!--
+     targetBean 생성
+        > adviceBean 생성
+            > AOP 환경 설정
+
+    -->
+<bean name="loggingAdviceBean" class="c_AOP.aop2_xml_order.LoggingAdvice"/>
+<bean name="loggingSampleBean" class="c_AOP.aop2_xml_order.LoggingSample"/>
+
+<aop:config>
+    <aop:pointcut id="pointCut" expression="execution(public * *(..))"/>
+    <aop:aspect id="loggingSample" ref="loggingSampleBean" order="2">
+        <aop:after method="after" pointcut-ref="pointCut"/>
+        <aop:before method="before" pointcut-ref="pointCut"/>
+    </aop:aspect>
+    <aop:aspect id="loggingAdvice" ref="loggingAdviceBean" order="1">
+        <aop:around method="around" pointcut-ref="pointCut"/>
+    </aop:aspect>
+
+</aop:config>
+</beans>

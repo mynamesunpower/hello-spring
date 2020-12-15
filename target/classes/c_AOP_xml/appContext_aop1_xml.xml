@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="targetBean" class="c_AOP.aop1_xml.MessageBeanImpl"/>
+
+    <!-- 2. advice 빈생성-->
+    <bean id="loggingAdvice" class="c_AOP.aop1_xml.LoggingAdvice"/>
+    <!--3. AOP 환경설정-->
+    <aop:config>
+        <aop:pointcut expression="execution(public * c_AOP.aop1_xml.*.*Hello(..))" id="pointcut"/>
+        <!-- advice -->
+        <aop:aspect id="aspect" ref="loggingAdvice">
+            <!-- id포인트컷이 나오기전에 advice로 지정한 폴더안에잇는 class파일안에
+                   before라는 method를 나오게하겟다.
+                    before2라는 method를 나오게하겟다. -->
+            <!--<aop:before method="before" pointcut-ref="pointcut"/>-->
+            <aop:around method="around" pointcut-ref="pointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
